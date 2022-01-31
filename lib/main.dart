@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:leafly/core/sign_in.dart';
 import 'package:leafly/core/sign_up.dart';
+import 'package:leafly/core/onboarding.dart';
 import 'package:leafly/providers/app.dart';
 import 'package:leafly/providers/user.dart';
 import 'package:leafly/screens/home_page.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: const SignInPage(),
+      home: const OnBoardingPage(),
     );
   }
 }

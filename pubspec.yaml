@@ -30,6 +30,7 @@ dependencies:
   flutter:
     sdk: flutter
 
+  introduction_screen: ^2.1.0
   carousel_pro: ^1.0.0
   font_awesome_flutter: 8.8.1
   firebase_auth: ^3.2.0
