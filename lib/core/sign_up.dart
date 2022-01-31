@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:leafly/core/sign_in.dart';
 import 'package:leafly/providers/user.dart';
-import 'package:leafly/screens/home_page.dart';
 import 'package:leafly/services/screen_navigation.dart';
 import 'package:leafly/services/style.dart';
 import 'package:provider/provider.dart';
@@ -241,10 +240,15 @@ class _SignUpPageState extends State<SignUpPage> {
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(snackBar);
                                   return;
+                                } else{
+                                  const snackBar =
+                                  SnackBar(content: Text("Sign up successful"));
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(snackBar);
                                 }
                                 authProvider.clearController();
                                 changeScreenReplacement(
-                                    context, const HomePage());
+                                    context, const SignInPage());
                               }
                             }),
                       ),

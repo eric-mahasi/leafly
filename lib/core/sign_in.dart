@@ -179,7 +179,7 @@ class _SignInPageState extends State<SignInPage> {
                               if (_formKey.currentState!.validate()) {
                                 if (!await authProvider.signIn()) {
                                   const snackBar =
-                                      SnackBar(content: Text("Log in failed"));
+                                      SnackBar(content: Text("Sign in failed"));
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(snackBar);
                                   return;
