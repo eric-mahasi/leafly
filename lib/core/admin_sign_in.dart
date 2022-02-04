@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:leafly/core/admin_sign_in.dart';
-import 'package:leafly/core/sign_up.dart';
 import 'package:leafly/providers/user.dart';
-import 'package:leafly/screens/home_page.dart';
+import 'package:leafly/screens/admin_page.dart';
 import 'package:leafly/services/screen_navigation.dart';
 import 'package:leafly/services/style.dart';
 import 'package:provider/provider.dart';
 
-class SignInPage extends StatefulWidget {
-  const SignInPage({Key? key}) : super(key: key);
+class AdminSignInPage extends StatefulWidget {
+  const AdminSignInPage({Key? key}) : super(key: key);
 
   @override
-  _SignInPageState createState() => _SignInPageState();
+  _AdminSignInPageState createState() => _AdminSignInPageState();
 }
 
-class _SignInPageState extends State<SignInPage> {
+class _AdminSignInPageState extends State<AdminSignInPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _isObscure = true;
 
@@ -56,7 +54,7 @@ class _SignInPageState extends State<SignInPage> {
                     children: <Widget>[
                       Expanded(
                         child: Image.asset(
-                          "assets/images/leaf.png",
+                          "assets/images/engineer.png",
                         ),
                       ),
                       const SizedBox(
@@ -141,32 +139,11 @@ class _SignInPageState extends State<SignInPage> {
                         ),
                         obscureText: _isObscure,
                       ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: <Widget>[
-                            InkWell(
-                              onTap: () => {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const AdminSignInPage())),
-                              },
-                              child: Text(
-                                "Admin Sign In",
-                                style: TextStyle(
-                                  color: black,
-                                  fontFamily: defaultFontFamily,
-                                  fontSize: defaultFontSize,
-                                  fontStyle: FontStyle.normal,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      const SizedBox(
+                        height: 15,
                       ),
                       SizedBox(
                         width: double.infinity,
@@ -177,7 +154,7 @@ class _SignInPageState extends State<SignInPage> {
                               padding: EdgeInsets.symmetric(
                                   vertical: 10.0, horizontal: 42.0),
                               child: Text(
-                                "SIGN IN",
+                                "ADMIN SIGN IN",
                                 style: TextStyle(
                                     color: white,
                                     fontSize: 25.0,
@@ -195,7 +172,7 @@ class _SignInPageState extends State<SignInPage> {
                                 }
                                 authProvider.clearController();
                                 changeScreenReplacement(
-                                    context, const HomePage());
+                                    context, const AdminPage());
                               }
                             }),
                       ),
@@ -205,44 +182,6 @@ class _SignInPageState extends State<SignInPage> {
                     ],
                   )),
             ),
-            Flexible(
-              flex: 1,
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      "Don't have an account? ",
-                      style: TextStyle(
-                        color: const Color(0xFF666666),
-                        fontFamily: defaultFontFamily,
-                        fontSize: defaultFontSize,
-                        fontStyle: FontStyle.normal,
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () => {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const SignUpPage()))
-                      },
-                      child: Text(
-                        "Sign Up",
-                        style: TextStyle(
-                          color: black,
-                          fontFamily: defaultFontFamily,
-                          fontSize: defaultFontSize,
-                          fontStyle: FontStyle.normal,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            )
           ],
         ),
       ),
