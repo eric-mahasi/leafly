@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:leafly/screens/pick_photo.dart';
+import 'package:leafly/services/screen_navigation.dart';
 import 'package:leafly/services/style.dart';
 
 class BottomNavBarWidget extends StatefulWidget {
@@ -16,8 +18,8 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
       setState(() {
         _selectedIndex = index;
         switch (index) {
-          case 2:
-            break;
+          case 1:
+            changeScreenReplacement(context, const PickPhoto());
         }
       });
     }
