@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:leafly/services/style.dart';
-import 'package:leafly/widgets/bottom_nav_bar.dart';
+import 'package:leafly/widgets/nav_drawer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -15,21 +15,16 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
         appBar: AppBar(
-            backgroundColor: primary,
-            elevation: 0,
-            leading: IconButton(
-              icon: const Icon(
-                Icons.arrow_back,
-                color: black,
-              ),
-              onPressed: () => Navigator.of(context).pop(),
-            )),
+          backgroundColor: primary,
+          elevation: 0,
+        ),
         body: const Center(
             child: Text(
           "Welcome",
           style: TextStyle(
               color: black, fontSize: 40.0, fontFamily: "WorkSansBold"),
         )),
-        bottomNavigationBar: const BottomNavBarWidget());
+        drawer: const NavDrawer());
+    // bottomNavigationBar: const BottomNavBarWidget());
   }
 }
