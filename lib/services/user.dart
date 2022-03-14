@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:leafly/models/user.dart';
 
 class UserServices {
   String collection = "users";
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseAuth auth = FirebaseAuth.instance;
 
   final CollectionReference users =
       FirebaseFirestore.instance.collection("users");
@@ -14,7 +16,9 @@ class UserServices {
   }
 
   void updateUserData(Map<String, dynamic> values) {
-    _firestore.collection(collection).doc(values['id']).update(values);
+    final User? user = auth.currentUser;
+    final uid = user!.uid;
+    _firestore.collection(collection).doc(uid).update(values);
   }
 
   void deleteUser(String userId) async {
