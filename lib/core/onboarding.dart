@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
-import 'package:introduction_screen/introduction_screen.dart';
-import 'package:leafly/services/style.dart';
 import 'package:flutter/material.dart';
+import 'package:introduction_screen/introduction_screen.dart';
 import 'package:leafly/core/sign_in.dart';
+import 'package:leafly/services/style.dart';
 
 class OnBoardingPage extends StatefulWidget {
   const OnBoardingPage({Key? key}) : super(key: key);
@@ -63,19 +63,19 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         PageViewModel(
           title: "Welcome to Leafly",
           body: "A faster way to monitor your crops' health.",
-          image: _buildImage('agriculture.png'),
+          image: _buildImage('bug-tomato.jpg'),
           decoration: pageDecoration,
         ),
         PageViewModel(
           title: "Convenient, fast, accurate",
-          body: "Diagnose your crops right from your phone.",
-          image: _buildImage('phone.png'),
+          body: "Diagnose your tomato plants right from your phone.",
+          image: _buildImage('tomato-leaf.jpg'),
           decoration: pageDecoration,
         ),
         PageViewModel(
           title: "Easy to use",
           body: "Take a picture or upload one from your gallery.",
-          image: _buildImage('plant.png'),
+          image: _buildImage('tomato-leaf2.jpg'),
           decoration: pageDecoration,
         ),
       ],
