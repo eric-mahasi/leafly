@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:leafly/screens/account.dart';
 import 'package:leafly/screens/home_page.dart';
 import 'package:leafly/screens/pick_photo.dart';
 import 'package:leafly/services/screen_navigation.dart';
@@ -79,6 +80,7 @@ class NavDrawer extends StatelessWidget {
             ),
             onTap: () {
               Navigator.of(context).pop();
+              changeScreenReplacement(context, const AccountPage());
             },
           )
         ],
