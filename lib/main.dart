@@ -1,20 +1,30 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:leafly/core/onboarding.dart';
 import 'package:leafly/core/sign_in.dart';
 import 'package:leafly/core/sign_up.dart';
-import 'package:leafly/core/onboarding.dart';
 import 'package:leafly/providers/app.dart';
 import 'package:leafly/providers/user.dart';
 import 'package:leafly/screens/home_page.dart';
+import 'package:leafly/services/disease_provider.dart';
 import 'package:provider/provider.dart';
+
+import 'models/disease_model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await Hive.initFlutter();
+  Hive.registerAdapter(DiseaseAdapter());
+
+  await Hive.openBox<Disease>('plant_diseases');
 
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider.value(value: AppProvider()),
     ChangeNotifierProvider.value(value: UserProvider.initialize()),
+    ChangeNotifierProvider.value(value: DiseaseService()),
   ], child: const MyApp()));
 }
 
