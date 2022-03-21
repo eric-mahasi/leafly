@@ -27,7 +27,7 @@ class _AccountPageState extends State<AccountPage> {
     final authProvider = Provider.of<UserProvider>(context);
     final FirebaseAuth auth = FirebaseAuth.instance;
     final User? user = auth.currentUser;
-    final userEmail = user!.email;
+    final userEmail = user?.email ?? "";
 
     return Scaffold(
         appBar: AppBar(
