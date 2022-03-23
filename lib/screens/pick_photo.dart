@@ -1,5 +1,7 @@
 // ignore_for_file: import_of_legacy_library_into_null_safe
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -77,7 +79,16 @@ class _PickPhotoState extends State<PickPhoto> {
 
                   // Save disease
                   _hiveService.addDisease(_disease);
-
+                  final FirebaseAuth auth = FirebaseAuth.instance;
+                  final User? user = auth.currentUser;
+                  final userID = user?.uid ?? "";
+                  Map<String, String> map = {
+                    "disease name": _disease.name,
+                    "detected date": _disease.dateTime.toString(),
+                    "user id": userID
+                  };
+                  FirebaseFirestore.instance.collection("diseases").doc().set(
+                      map);
                   changeScreenReplacement(context, const Suggestions());
                 } else {
                   // Display unsure message
