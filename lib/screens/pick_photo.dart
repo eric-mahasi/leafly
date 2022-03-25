@@ -10,6 +10,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:leafly/models/disease_model.dart';
 import 'package:leafly/screens/suggestions.dart';
 import 'package:leafly/screens/title_section.dart';
+import 'package:leafly/screens/try_again.dart';
 import 'package:leafly/services/classify.dart';
 import 'package:leafly/services/disease_provider.dart';
 import 'package:leafly/services/hive_database.dart';
@@ -92,6 +93,7 @@ class _PickPhotoState extends State<PickPhoto> {
                   changeScreenReplacement(context, const Suggestions());
                 } else {
                   // Display unsure message
+                  changeScreenReplacement(context, const TryAgain());
                 }
               },
             ),
