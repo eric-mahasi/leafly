@@ -140,6 +140,9 @@ class _AdminSignInPageState extends State<AdminSignInPage> {
                         ),
                         obscureText: _isObscure,
                       ),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       Align(
                         alignment: Alignment.bottomCenter,
                         child: Row(
@@ -168,10 +171,7 @@ class _AdminSignInPageState extends State<AdminSignInPage> {
                         ),
                       ),
                       const SizedBox(
-                        height: 15,
-                      ),
-                      const SizedBox(
-                        height: 15,
+                        height: 10,
                       ),
                       SizedBox(
                         width: double.infinity,
