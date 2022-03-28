@@ -85,6 +85,7 @@ class UserProvider with ChangeNotifier {
     first_name.text = "";
     last_name.text = "";
     password.text = "";
+    confirm_password.text = "";
     email.text = "";
   }
 
