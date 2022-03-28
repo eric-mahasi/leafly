@@ -213,6 +213,53 @@ class _SignUpPageState extends State<SignUpPage> {
                       const SizedBox(
                         height: 10,
                       ),
+                      TextFormField(
+                        showCursor: true,
+                        controller: authProvider.confirm_password,
+                        obscureText: _isObscure,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Please confirm your password';
+                          }
+                          return null;
+                        },
+                        decoration: InputDecoration(
+                          border: const OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0)),
+                            borderSide: BorderSide(
+                              width: 0,
+                              style: BorderStyle.none,
+                            ),
+                          ),
+                          filled: true,
+                          prefixIcon: Icon(
+                            Icons.lock_outline,
+                            color: black,
+                            size: defaultIconSize,
+                          ),
+                          suffixIcon: IconButton(
+                              icon: Icon(_isObscure
+                                  ? Icons.visibility
+                                  : Icons.visibility_off),
+                              color: primary,
+                              onPressed: () {
+                                setState(() {
+                                  _isObscure = !_isObscure;
+                                });
+                              }),
+                          fillColor: const Color(0xFFF2F3F5),
+                          hintStyle: TextStyle(
+                            color: const Color(0xFF666666),
+                            fontFamily: defaultFontFamily,
+                            fontSize: defaultFontSize,
+                          ),
+                          hintText: "Confirm Password",
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       const SizedBox(
                         height: 15,
                       ),
@@ -234,21 +281,30 @@ class _SignUpPageState extends State<SignUpPage> {
                             ),
                             onPressed: () async {
                               if (_formKey.currentState!.validate()) {
-                                if (!await authProvider.signUp()) {
-                                  const snackBar =
-                                      SnackBar(content: Text("Sign up failed"));
+                                if (authProvider.password.text.trim() ==
+                                    authProvider.confirm_password.text.trim()) {
+                                  if (!await authProvider.signUp()) {
+                                    const snackBar = SnackBar(
+                                        content: Text("Sign up failed"));
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(snackBar);
+                                    return;
+                                  } else {
+                                    const snackBar = SnackBar(
+                                        content: Text("Sign up successful"));
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(snackBar);
+                                  }
+                                  authProvider.clearController();
+                                  changeScreenReplacement(
+                                      context, const SignInPage());
+                                } else {
+                                  const snackBar = SnackBar(
+                                      content: Text("Passwords do not match"));
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(snackBar);
                                   return;
-                                } else{
-                                  const snackBar =
-                                  SnackBar(content: Text("Sign up successful"));
-                                  ScaffoldMessenger.of(context)
-                                      .showSnackBar(snackBar);
                                 }
-                                authProvider.clearController();
-                                changeScreenReplacement(
-                                    context, const SignInPage());
                               }
                             }),
                       ),
