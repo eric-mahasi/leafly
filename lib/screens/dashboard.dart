@@ -16,6 +16,8 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
+    DateTime now = DateTime.now();
+    String date = now.toString().substring(0, 10);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primary,
@@ -24,43 +26,76 @@ class _DashboardState extends State<Dashboard> {
       body: Center(
         child: Column(
           children: [
-            SizedBox(
-              height: 50,
-              child: Card(
-                shape: const BeveledRectangleBorder(),
-                child: GestureDetector(
-                  onTap: () async {
-                    QuerySnapshot _myDoc = await FirebaseFirestore.instance
-                        .collection("diseases")
-                        .get();
-                    List<DocumentSnapshot> myDocCount = _myDoc.docs;
-                    numberOfDiseases = myDocCount.length.toString();
-                  },
-                  child: Text(
-                      "Number of diseases detected" " " + numberOfDiseases),
-                ),
-              ),
+            const Text("Leafly admin dashboard",
+                style: TextStyle(
+                    color: darkGreen,
+                    fontSize: 35.0,
+                    fontFamily: "WorkSansBold")),
+            const SizedBox(
+              height: 10,
             ),
-            SizedBox(
-              height: 50,
-              width: 200,
-              child: Card(
-                shape: const BeveledRectangleBorder(),
-                child: GestureDetector(
-                  onTap: () async {
-                    QuerySnapshot _myDoc = await FirebaseFirestore.instance
-                        .collection("users")
-                        .get();
-                    List<DocumentSnapshot> myDocCount = _myDoc.docs;
-                    numberOfUsers = myDocCount.length.toString();
-                  },
-                  child: Text("Number of users " + numberOfUsers),
+            Row(
+              children: <Widget>[
+                const Text("Today's date ",
+                    style: TextStyle(
+                        color: black,
+                        fontSize: 20.0,
+                        fontFamily: "WorkSansBold")),
+                Text(date.toString(),
+                    style: const TextStyle(
+                        color: darkGreen,
+                        fontSize: 40.0,
+                        fontFamily: "WorkSansBold")),
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                const Text("Number of Users ",
+                    style: TextStyle(
+                        color: black,
+                        fontSize: 20.0,
+                        fontFamily: "WorkSansBold")),
+                Text(
+                  numberOfUsers,
+                  style: const TextStyle(
+                      color: darkGreen,
+                      fontSize: 40.0,
+                      fontFamily: "WorkSansBold"),
                 ),
-              ),
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                const Text("Number of Diseases Detected ",
+                    style: TextStyle(
+                        color: black,
+                        fontSize: 20.0,
+                        fontFamily: "WorkSansBold")),
+                Text(
+                  numberOfDiseases,
+                  style: const TextStyle(
+                      color: darkGreen,
+                      fontSize: 40.0,
+                      fontFamily: "WorkSansBold"),
+                ),
+              ],
             ),
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton.extended(
+          label: const Text('Refresh'),
+          icon: const Icon(Icons.wifi_protected_setup),
+          onPressed: () async {
+            QuerySnapshot _myDoc =
+                await FirebaseFirestore.instance.collection("users").get();
+            List<DocumentSnapshot> myDocCount = _myDoc.docs;
+            numberOfUsers = myDocCount.length.toString();
+            QuerySnapshot myDoc =
+                await FirebaseFirestore.instance.collection("diseases").get();
+            List<DocumentSnapshot> _myDocCount = myDoc.docs;
+            numberOfDiseases = _myDocCount.length.toString();
+          }),
       drawer: const AdminNavDrawer(),
     );
   }
