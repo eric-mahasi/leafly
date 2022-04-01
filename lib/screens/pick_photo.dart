@@ -123,7 +123,7 @@ class _PickPhotoState extends State<PickPhoto> {
                   _hiveService.addDisease(_disease);
                   changeScreenReplacement(context, const Suggestions());
                 } else {
-                  // Display unsure message
+                  changeScreenReplacement(context, const TryAgain());
                 }
               },
             ),
