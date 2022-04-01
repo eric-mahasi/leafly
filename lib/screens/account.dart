@@ -38,22 +38,10 @@ class _AccountPageState extends State<AccountPage> {
             child: Form(
           key: _formKey,
           child: Column(children: [
-            GestureDetector(
-              onTap: () async {
-                final QuerySnapshot snap = await FirebaseFirestore.instance
-                    .collection("users")
-                    .where("email", isEqualTo: userEmail)
-                    .get();
-                setState(() {
-                  firstName = snap.docs[0]["first name"];
-                  lastName = snap.docs[0]["last name"];
-                });
-              },
-              child: Text(
-                firstName + " " + lastName,
-                style: const TextStyle(
-                    color: black, fontSize: 40.0, fontFamily: "WorkSansBold"),
-              ),
+            Text(
+              firstName + " " + lastName,
+              style: const TextStyle(
+                  color: black, fontSize: 40.0, fontFamily: "WorkSansBold"),
             ),
             Row(
               children: <Widget>[
