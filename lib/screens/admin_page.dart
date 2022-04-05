@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:leafly/screens/admin_nav_bar.dart';
 import 'package:leafly/services/style.dart';
 import 'package:leafly/services/user.dart';
 
@@ -18,19 +19,13 @@ class _AdminPageState extends State<AdminPage> {
 
     return Scaffold(
         appBar: AppBar(
-            backgroundColor: primary,
-            elevation: 0,
-            title: const Text(
-              "Users",
-              style: TextStyle(color: black),
-            ),
-            leading: IconButton(
-              icon: const Icon(
-                Icons.arrow_back,
-                color: black,
-              ),
-              onPressed: () => Navigator.of(context).pop(),
-            )),
+          backgroundColor: primary,
+          elevation: 0,
+          title: const Text(
+            "Users",
+            style: TextStyle(color: black),
+          ),
+        ),
         body: StreamBuilder(
             stream: _userServices.users.snapshots(),
             builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
@@ -103,6 +98,7 @@ class _AdminPageState extends State<AdminPage> {
                     });
               }
               return const Center(child: CircularProgressIndicator());
-            }));
+            }),
+        drawer: const AdminNavDrawer());
   }
 }

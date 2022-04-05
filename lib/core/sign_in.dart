@@ -141,6 +141,9 @@ class _SignInPageState extends State<SignInPage> {
                         ),
                         obscureText: _isObscure,
                       ),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       Align(
                         alignment: Alignment.bottomCenter,
                         child: Row(
@@ -167,6 +170,9 @@ class _SignInPageState extends State<SignInPage> {
                             ),
                           ],
                         ),
+                      ),
+                      const SizedBox(
+                        height: 10,
                       ),
                       SizedBox(
                         width: double.infinity,

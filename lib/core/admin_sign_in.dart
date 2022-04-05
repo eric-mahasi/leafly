@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:leafly/core/sign_in.dart';
 import 'package:leafly/providers/user.dart';
 import 'package:leafly/screens/admin_page.dart';
 import 'package:leafly/services/screen_navigation.dart';
@@ -140,10 +141,37 @@ class _AdminSignInPageState extends State<AdminSignInPage> {
                         obscureText: _isObscure,
                       ),
                       const SizedBox(
-                        height: 15,
+                        height: 10,
+                      ),
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            InkWell(
+                              onTap: () => {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const SignInPage())),
+                              },
+                              child: Text(
+                                "User Sign In",
+                                style: TextStyle(
+                                  color: black,
+                                  fontFamily: defaultFontFamily,
+                                  fontSize: defaultFontSize,
+                                  fontStyle: FontStyle.normal,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                       const SizedBox(
-                        height: 15,
+                        height: 10,
                       ),
                       SizedBox(
                         width: double.infinity,

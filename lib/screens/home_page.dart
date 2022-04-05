@@ -18,12 +18,31 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: primary,
           elevation: 0,
         ),
-        body: const Center(
-            child: Text(
-          "Welcome",
-          style: TextStyle(
-              color: black, fontSize: 40.0, fontFamily: "WorkSansBold"),
-        )),
+        body: Center(
+          child: Column(
+            children: const [
+              Text(
+                "Welcome",
+                style: TextStyle(
+                    color: black, fontSize: 40.0, fontFamily: "WorkSansBold"),
+              ),
+              Text(
+                "Your next diagnosis is a few clicks away",
+                style: TextStyle(
+                    color: darkGreen,
+                    fontSize: 20.0,
+                    fontFamily: "WorkSansBold"),
+              ),
+              Text(
+                "Use the drawer on the left for more",
+                style: TextStyle(
+                    color: darkGreen,
+                    fontSize: 20.0,
+                    fontFamily: "WorkSansBold"),
+              ),
+            ],
+          ),
+        ),
         drawer: const NavDrawer());
     // bottomNavigationBar: const BottomNavBarWidget());
   }
